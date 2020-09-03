@@ -101,6 +101,12 @@ Thus, during the search for a value `v` in the tree the number of traversed node
 In the example tree provided above, for `v == 5` only the root node needs to be accessed to determine whether `v` is in the tree.
 Whereas, when `v` is larger than all values in `tree` all nodes in `tree` need to be accessed to verify that `v` is not in the tree.
 
+But how are UUIDs sorted?
+I added some debug output to the server and inserted different values in the BST.
+It turns out that UUIDs are sorted in their binary representation.
+This means that the 16 bytes (32 hexadecimal digits) of the UUID correspond to a 128-bit number by converting them with big-endian (Example: `1234XXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX` is represented as `0001 0010 0011 0100 ...`).
+Anyway, since the server expects the UUIDs in binary representation, we only need to interpret the resulting 128-bit value as a string of 8 byte characters (big endian).
+
 Given this knowledge, we can send the server a large number (i.e. 10.000) of consecutive UUIDs, and depending on the search duration we can guess whether the flag is smaller or larger than our values.
 With this technique, we can use a binary search and leak 1 Bit At A Time.
 
