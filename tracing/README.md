@@ -40,7 +40,7 @@ The file `Cargo.toml` defines the required dependencies and we can simply start 
 $ RUST_LOG=debug cargo run <parameter>
 ```
 
-The source files in this repository contain additional debug output and comments in the source code, but do not affect the challenge.
+The source files in [this repository](https://github.com/fab1ano/google-ctf-20/tree/master/tracing) contain additional debug output and comments in the source code, but do not affect the challenge.
 The original source files are available in [`source.zip`](./source.zip).
 
 Looking at `server.rs` we can see, that the binary runs a server and listens on port 1337 (`const BIND_ADDR: &str = "0.0.0.0:1337";`).
